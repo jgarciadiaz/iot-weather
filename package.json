@@ -5,7 +5,11 @@
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/main.js"
+    "start": "node ./src/main.js",
+    "docker:build": "docker build -t jgarciadiaz/iot-weather .",
+    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' -e 'API_URL=http://api-events' --name iot-weather --link api-events:api-events -d jgarciadiaz/iot-weather",
+    "docker:push": "docker push jgarciadiaz/iot-weather",
+    "docker:pull": "docker pull jgarciadiaz/iot-weather"
   },
   "author": "",
   "license": "ISC",

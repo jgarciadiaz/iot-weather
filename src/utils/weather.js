@@ -2,19 +2,19 @@ const axios = require('axios')
 
 const config = require('../config');
 
-async function saveWeather() {  
+async function saveWeather(weather) {
   const data = {
     weather: {
-      celsius: '21',
-      fahrenheit: '69.8',
-      pressure: 'pressure',
-      relativeHumidity: 'relativeHumidity',
-      lightLevel: 'lightLevel',
-      city: 'chicago',
-      gps: 'gps',
+      celsius: weather.celsius,
+      fahrenheit: weather.fahrenheit,
+      pressure: weather.pressure,
+      relativeHumidity: weather.relativeHumidity,
+      lightLevel: weather.lightLevel,
     }
   }
+
   const response = await axios.post(`${config.get('api.url')}/weather`, data)
+
   if (response.status === 200) {
     console.log('report saved :)')
   } else {

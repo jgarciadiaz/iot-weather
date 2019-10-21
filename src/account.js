@@ -1,6 +1,6 @@
 const Particle = require('particle-api-js');
 const particle = new Particle();
-const { username, password } = require('./secrets')
+const { username, password } = require('../secrets')
 
 
 async function main (){

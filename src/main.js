@@ -3,12 +3,12 @@ const five = require("johnny-five");
 
 const { saveWeather } = require('./utils/weather')
 
-const { token, deviceId } = require('../secrets')
+const config = require('./config');
 
 function onBoardReady() {
-  var temperature = new five.Temperature({
+  const temperature = new five.Temperature({
     controller: "HTU21D",
-    freq: 1000 * 5
+    freq: 1000 * 1
   });
 
   temperature.on("change", function() {
@@ -23,12 +23,21 @@ function onBoardReady() {
 async function run() {
   const board = new five.Board({
     io: new Particle({
-      token,
-      deviceId,
+      token: config.get("token"),
+      deviceId: config.get("deviceId"),
     })
   });
 
   board.on("ready", onBoardReady);
 }
 
-run()
+// run()
+const mockData = {
+  celsius: '21',
+  fahrenheit: '69.8',
+  pressure: 'pressure',
+  relativeHumidity: 'relativeHumidity',
+  lightLevel: 'lightLevel'
+}
+
+saveWeather(mockData)

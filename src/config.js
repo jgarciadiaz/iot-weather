@@ -16,6 +16,14 @@ const config = convict({
       env: 'API_URL',
     }
   },
+  token: {
+    default: '',
+    env: 'IOT_TOKEN',
+  },
+  deviceId: {
+    default: '',
+    env: 'IOT_DEVICEID',
+  },
 });
 
 module.exports = config;
